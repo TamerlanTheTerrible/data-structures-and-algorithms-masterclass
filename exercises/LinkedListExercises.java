@@ -1,4 +1,7 @@
-package LinkedList;
+package exercises;
+
+import linkedlist.*;
+import linkedlist.LinkedList.Node;
 
 import java.util.HashSet;
 
@@ -6,7 +9,7 @@ import java.util.HashSet;
  * Created by Temurbek Ismoilov on 17/01/23.
  */
 
-public class Exercises {
+public class LinkedListExercises {
 
     public void deleteDups(SinglyLinkedList singlyLinkedList) {
         HashSet<Integer> set = new HashSet<>();

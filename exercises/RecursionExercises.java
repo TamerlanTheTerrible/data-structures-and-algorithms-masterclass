@@ -1,4 +1,4 @@
-package Recursion;
+package exercises;
 
 /**
  * Created by Temurbek Ismoilov on 17/01/23.

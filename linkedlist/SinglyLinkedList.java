@@ -1,19 +1,21 @@
-package LinkedList;
+package linkedlist;
+
 
 /**
- * Created by Temurbek Ismoilov on 19/01/23.
+ * Created by Temurbek Ismoilov on 17/01/23.
  */
 
-public class CircularSinglyLinkedList implements LinkedList {
+public class SinglyLinkedList implements LinkedList{
     public Node head;
     public Node tail;
     public int size;
 
     @Override
     public void create(int nodeValue) {
-        Node node = new Node(nodeValue);
-        node.next = node;
-        head = tail = node;
+        Node newNode = new Node();
+        newNode.value = nodeValue;
+        head = tail = newNode;
+        newNode.next = null;
         size=1;
     }
 
@@ -30,11 +32,10 @@ public class CircularSinglyLinkedList implements LinkedList {
             Node newNode = new Node(nodeValue);
             newNode.next = head;
             head = newNode;
-            tail.next = newNode;
             size++;
-        } else if (location >= size-1) {
+        } else if (location >= size) {
             Node newNode = new Node(nodeValue);
-            newNode.next = head;
+            newNode.next = null;
             tail.next = newNode;
             tail = newNode;
             size++;
@@ -65,42 +66,38 @@ public class CircularSinglyLinkedList implements LinkedList {
     @Override
     public void deleteNode(int location) {
         if (head == null) {
-            System.out.println("The linked list is empty");
+            System.out.println("Linked list doesn't exist");
         } else if (location == 0) {
             head = head.next;
-            tail = head;
             size--;
             if (size==0) {
+                tail = null;
+            }
+        } else if (location >= size-1) {
+            Node temp = head;
+            for (int i = 1; i < size - 1; i++) {
+                temp = temp.next;
+            }
+            if (temp == head && temp == tail) {
                 head.next = null;
-                head = tail = null;
-            }
-        } else if (location >= size) {
-            Node pointer = head;
-            for (int i = 1; i < size-1; i++) {
-                pointer = pointer.next;
-            }
-            if (pointer == head) {
-                pointer.next = null;
-                head = tail = null;
             } else {
-                pointer.next = head;
-                tail = head;
+                temp.next = null;
+                tail = temp;
             }
             size--;
         } else {
-            Node pointer = head;
+            Node temp = head;
             for (int i = 1; i < location; i++) {
-                pointer = pointer.next;
+                temp = temp.next;
             }
-            pointer.next = pointer.next.next;
+            temp.next = temp.next.next;
             size--;
         }
     }
 
     @Override
     public void deleteLL() {
-        tail.next = null;
-        tail = head = null;
+        head = tail = null;
         size = 0;
     }
 
