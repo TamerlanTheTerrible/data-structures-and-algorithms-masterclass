@@ -1,6 +1,6 @@
 package exercises;
 
-import linkedlist.*;
+import linkedlist.SinglyLinkedList;
 import linkedlist.LinkedList.Node;
 
 import java.util.HashSet;
